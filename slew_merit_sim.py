@@ -64,8 +64,8 @@ def get_slewtime(ctable):
                     higher_than_slew = False
 
                 #if maximum of the dome and telescope slew is lesser than readout, merit value is 0
-                if(max(dome_time, slew_time) <= readout):
-                    ignore
+                if(max(dome_time, slew_time)  <= readout):
+                    merit_val = 0
                 else:
                     delay = readout - max(dome_time, slew_time)
                     merit_val = 1/delay #merit value is the inverse of the delay
@@ -76,11 +76,6 @@ def get_slewtime(ctable):
 
     slewtime = Table(rows=slewlist, names=('#','From RA','From DEC','To RA','To DEC','Separation', 'Dome Rotation Time', 'Higher than slew', 'Merit Value'))
     return slewtime
-
-def get_dome_merit(self):
-    for entry in slew_table:
-
-
 
 if __name__ == '__main__':
     t = import_coords()
