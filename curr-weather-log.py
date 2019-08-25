@@ -1,8 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[6]:
-
+#logs current weather to a csv file every minute from the OWM API
 
 import csv
 import pyowm
@@ -10,25 +6,13 @@ from datetime import datetime
 import pytz
 import time
 
-
-# In[7]:
-
-
 owm = pyowm.OWM('105429291e4f0783a883e5ad86cc5bdb')
-
-
-# In[8]:
-
 
 def get_curr_weather():
     obs = owm.weather_at_coords(-32.38722222, 20.81166667) #coords for sutherland site (lat/lon) 
     w = obs.get_weather()
     
     return w
-
-
-# In[10]:
-
 
 with open('weather-db.csv', 'w') as csvfile:
     fieldnames = ['time', 'sunset_time', 'temp', 'wind_speed', 'wind_dir', 'clouds', 'humidity']
@@ -53,10 +37,7 @@ with open('weather-db.csv', 'w') as csvfile:
         
         time.sleep(60.0 - ((time.time() - start_time) % 60.0))
         
-    
-
-
-# In[ ]:
+   
 
 
 
